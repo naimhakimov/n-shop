@@ -1,13 +1,15 @@
 import React from "react";
-import create from 'zustand'
+import { Input, Switch } from "@nextui-org/react";
 
 function Home({ posts }: {posts: any}) {
 
     return (
         <ul>
             {posts.map((post: any) => (
-                <li>{post.name}</li>
+                <li key={post._id}>{post.name}</li>
             ))}
+            <Switch checked={true} id={'werwerwe'} />
+            <Input  id={'werwer'} label={'werwerew'}/>
         </ul>
     )
 }
