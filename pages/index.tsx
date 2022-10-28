@@ -1,28 +1,19 @@
-import { Input, Switch } from "@nextui-org/react";
+import { useActions } from "../src/hooks/actions";
+import { useAppSelector } from "../src/hooks/redux";
 
-function Home({ posts }: { posts: any }) {
-    if (!posts) {
-        return null
-    }
+function Home() {
+    const {increment, decrement} = useActions()
+    const {count} = useAppSelector(state => state.count)
     return (
         <ul>
-            {posts.map((post: any) => (
-                <li key={post._id}>{post.name}</li>
-            ))}
-            <Switch checked={true} id={'werwerwe'} />
-            <Input id={'werwer'} label={'werwerew'} />
+            <span>
+                {count}
+            </span>
+            <button onClick={increment}>+werwer</button>
+            <button onClick={decrement}>-werwer</button>
         </ul>
     )
 }
 
-export async function getStaticProps() {
-    const res = await fetch('http:localhost:3000/api/products?page=1&size=10')
-    const posts = await res.json()
-    return {
-        props: {
-            posts
-        },
-    }
-}
 
 export default Home
