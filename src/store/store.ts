@@ -6,6 +6,12 @@ export const store = configureStore({
     reducer: {
         count: counterReducer
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ['counter/increment', 'counter/decrement'],
+            },
+        }),
 })
 
 setupListeners(store.dispatch)
